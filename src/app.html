@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket IO Client</title>
+</head>
+<body>
+    <h1>Get Responses from the Chuha server</h1><br>
+    <input type="text" id="input_msg">
+    <button id="btn">Submit</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        socket.on('connect',()=>{
+            console.log("User Connected.");
+        })
+        let value = document.getElementById("btn");
+        let input_msg = document.getElementById("input_msg");
+        value.addEventListener("click",()=>{
+            socket.emit("message",input_msg.value);
+        })
+    </script>
+</body>
+</html>
